@@ -1,0 +1,15 @@
+<div class='rgcontainer'>
+
+  <po-container class="po-md-6">
+    <p class="po-font-title rgtitle">Flow - Novo usuário</p>
+    <po-divider></po-divider>
+    <form [formGroup]="registerForm" >
+      <po-input class="po-md-12" formControlName="name" p-icon="po-icon-user" p-label="Nome"> </po-input>
+      <po-email class="po-md-12" formControlName="email" p-label="Email" p-clean> </po-email>
+      <po-password class="po-md-12 po-mb-2" formControlName="password" p-label="Senha" p-clean ></po-password>
+      <po-button class="po-md-12 po-mb-2" p-label="Registrar" p-type='primary' [p-disabled]="!registerForm.valid" (p-click)="submit(registerForm.value)"> </po-button>
+      <po-button class="po-md-12 po-mb-2" p-label="Cancelar" p-type='danger' [routerLink]="['/login']"  > </po-button>
+    </form>
+  </po-container>
+</div>
+<!-- (ngSubmit)="register()" -->
