@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PoButtonModule, PoContainerModule, PoFieldModule, PoModalModule, PoModule, PoNotificationModule, PoTagModule, PoWidgetModule } from '@po-ui/ng-components';
+import { PoButtonModule, PoContainerModule, PoFieldModule, PoModalModule, PoModule, PoNotificationModule, PoPageModule, PoTagModule, PoWidgetModule } from '@po-ui/ng-components';
 import { PoPageLoginModule, PoTemplatesModule } from '@po-ui/ng-templates';
 
 
@@ -14,7 +14,8 @@ import { PoPageLoginModule, PoTemplatesModule } from '@po-ui/ng-templates';
     PoContainerModule,
     PoFieldModule,
     PoWidgetModule,
-    PoTagModule
+    PoTagModule,
+    PoPageModule
   ],
   exports:[
     PoModule,
@@ -26,7 +27,8 @@ import { PoPageLoginModule, PoTemplatesModule } from '@po-ui/ng-templates';
     PoContainerModule,
     PoFieldModule,
     PoWidgetModule,
-    PoTagModule
+    PoTagModule,
+    PoPageModule
   ]
 
 

@@ -1,0 +1,10 @@
+.lista-columns{
+  display: flex;
+  justify-content: space-around;
+  color: #8241a4;
+  font-family: Roboto-Bold,sans-serif;
+    font-size: 14px;
+}
+.lista-columns-divider{
+  border-bottom: 3px solid #8241a4;
+}

@@ -4,27 +4,23 @@ import { FeaturesComponent } from './features.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { CardComponent } from './extrato/card/card.component';
 
 const routes: Routes = [
   {
     path: '',
     component: FeaturesComponent,
-    // children: [
-    //   {
-    //     path: 'extrato',
-    //     component: ExtratoComponent
-    //   }
-    // ]
-  },
-
+    children: [
+      {
+        path: 'extrato',
+        loadChildren: () => import('./extrato/extrato.module').then(m => m.ExtratoModule)
+      },
+    ]
+  }
 ]
 
 @NgModule({
   declarations: [
-    FeaturesComponent,
-    ExtratoComponent,
-    CardComponent
+    FeaturesComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,8 @@
-<section class="po-row">
+<section class="po-row po-mb-2">
+  <app-card  class="po-md-3 po-lg-3"
+  Titulo='Investimento'
+  [Valor]=500
+  ></app-card>
   <app-card  class="po-md-3 po-lg-3"
   Titulo='Receita'
   [Valor]=500
@@ -13,14 +17,15 @@
   ></app-card>
 </section>
 
-<section class="po-row">
-  <po-tag
+<section class="po-row po-mb-2">
+  <po-tag class="po-mr-2"
     p-value="Mês" >
   </po-tag>
-  <po-tag
+  <po-tag class="po-mr-2"
     p-value="no Ano" >
   </po-tag>
   <po-tag
+		p-icon="po-icon-calendar"
     p-value="Filtro por período" >
   </po-tag>
 </section>
@@ -33,3 +38,23 @@ p-label="string"
 p-orientation="PoTagOrientation"
 p-type="PoTagType"
 p-value="string" > -->
+
+<section>
+  <div class="lista-columns">
+    <p>Data</p>
+    <p>Descrição</p>
+    <p>Tipo</p>
+    <p>Valor</p>
+  </div>
+  <div class="lista-columns-divider po-mb-1"></div>
+  <Div *ngIf="Movimentos | async as items" >
+    <app-list-item *ngFor="let item of items"
+      [data]='item.data'
+      [nome]='item.nome'
+      [descricao]='item.descricao'
+      [carteira]='item.carteira'
+      [tipo]='item.tipo'
+      [valor]='item.valor'
+    ></app-list-item>
+  </Div>
+</section>
