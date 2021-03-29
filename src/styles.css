@@ -2,3 +2,6 @@
 .po-divider{
   padding: 0 0;
 }
+.po-modal-footer{
+  display: none;
+}

@@ -15,7 +15,8 @@ import { PoPageLoginModule, PoTemplatesModule } from '@po-ui/ng-templates';
     PoFieldModule,
     PoWidgetModule,
     PoTagModule,
-    PoPageModule
+    PoPageModule,
+    PoFieldModule
   ],
   exports:[
     PoModule,
@@ -28,7 +29,8 @@ import { PoPageLoginModule, PoTemplatesModule } from '@po-ui/ng-templates';
     PoFieldModule,
     PoWidgetModule,
     PoTagModule,
-    PoPageModule
+    PoPageModule,
+    PoFieldModule
   ]
 
 

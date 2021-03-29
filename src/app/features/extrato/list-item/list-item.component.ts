@@ -10,7 +10,7 @@ export class ListItemComponent implements OnInit {
   @Input() data!: string;
   @Input() nome!: string;
   @Input() descricao!: string;
-  @Input() carteira!: string;
+  @Input() categoria!: string;
   @Input() tipo!: string;
   @Input() valor!: number;
 

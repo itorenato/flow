@@ -3,7 +3,7 @@ export interface Movimento {
   data: string;
   nome: string;
   descricao: string;
-  carteira: string;
+  categoria: string;
   tipo: string;
   valor: number;
 }

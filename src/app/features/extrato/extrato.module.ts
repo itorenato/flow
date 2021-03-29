@@ -11,7 +11,7 @@ const routes: Routes = [
     path: '',
     component: ExtratoComponent,
   }
-]
+];
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +21,7 @@ const routes: Routes = [
   declarations: [
     ExtratoComponent,
     CardComponent,
-    ListItemComponent,
+    ListItemComponent
     ]
 })
 export class ExtratoModule { }

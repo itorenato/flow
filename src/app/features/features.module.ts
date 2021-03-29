@@ -1,3 +1,4 @@
+import { CadastrosModule } from './../cadastros/cadastros.module';
 import { ExtratoComponent } from './extrato/extrato.component';
 import { PoUiModule } from './../poUi.module';
 import { FeaturesComponent } from './features.component';
@@ -14,6 +15,10 @@ const routes: Routes = [
         path: 'extrato',
         loadChildren: () => import('./extrato/extrato.module').then(m => m.ExtratoModule)
       },
+      {
+        path: 'movimento',
+        loadChildren: () => import('./movimento/movimento.module').then(m => m.MovimentoModule)
+      },
     ]
   }
 ]
@@ -25,7 +30,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     PoUiModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    CadastrosModule
   ]
 })
 export class FeaturesModule { }

@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  submit(form:any){
-    this.firebaseService.register(form.email, form.password, form.name)
+  submit(form: any): void{
+    this.firebaseService.register(form.email, form.password, form.name);
   }
 }

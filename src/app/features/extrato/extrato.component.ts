@@ -2,6 +2,7 @@ import { FirebaseService } from './../../services/firebase/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { Movimento } from './extrato';
 import { Observable, of } from 'rxjs';
+import { Data } from 'src/app/services/firebase/firebase';
 
 @Component({
   selector: 'app-extrato',
@@ -10,91 +11,15 @@ import { Observable, of } from 'rxjs';
 })
 export class ExtratoComponent implements OnInit {
 
-  Movimentos: Observable<Array<Movimento>>;
+  public Movimentos$: Observable<Array<Data>>;
+  private today = new Date();
   constructor(private firebaseService: FirebaseService) {
-    this.Movimentos = of([
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-      {
-        userId:'sdfskdjfgjh',
-        data:'2001-01-01',
-        nome:'Enel',
-        descricao:'Conta de energia',
-        carteira:'Despesa',
-        tipo:'fixo',
-        valor:900,
-      },
-    ])
+    this.Movimentos$ = this.firebaseService.getWhenPeriod(
+      this.firebaseService.collectionMovimentos,
+      'data',
+      new Date(this.today.getFullYear(), 0, 1).toISOString().slice(0, 10),
+      new Date(this.today.getFullYear() + 1, 0, 0).toISOString().slice(0, 10),
+      );
   }
 
   ngOnInit(): void {

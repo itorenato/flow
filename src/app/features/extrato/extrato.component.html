@@ -47,14 +47,14 @@ p-value="string" > -->
     <p>Valor</p>
   </div>
   <div class="lista-columns-divider po-mb-1"></div>
-  <Div *ngIf="Movimentos | async as items" >
+  <Div *ngIf="Movimentos$ | async as items" >
     <app-list-item *ngFor="let item of items"
-      [data]='item.data'
-      [nome]='item.nome'
-      [descricao]='item.descricao'
-      [carteira]='item.carteira'
-      [tipo]='item.tipo'
-      [valor]='item.valor'
+      [data]='item.data.data'
+      [nome]='item.data.nome'
+      [descricao]='item.data.descricao'
+      [categoria]='item.data.categoria'
+      [tipo]='item.data.tipo'
+      [valor]='item.data.valor'
     ></app-list-item>
   </Div>
 </section>

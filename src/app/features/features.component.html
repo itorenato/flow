@@ -1,19 +1,21 @@
 <div class="po-wrapper">
 
-  <po-toolbar
+  <!-- <po-toolbar
 		[p-title]="toollbarTitle"
 		[p-profile-actions]="profileActions"
 		[p-profile]="profile"
 	>
-	</po-toolbar>
+	</po-toolbar> -->
 
 	<po-menu
 		[p-menus]="menuItems"
 		p-logo="https://po-ui.io/assets/po-logos/po_color_bg.svg"
 	></po-menu>
 
-	<po-page-default>
+	<po-page-default [p-title]="toollbarTitle">
 		<router-outlet></router-outlet>
 	</po-page-default>
 
 </div>
+
+<app-categoria #modalCategoria ></app-categoria>
