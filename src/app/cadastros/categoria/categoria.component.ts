@@ -47,6 +47,6 @@ export class CategoriaComponent implements OnInit {
       nome: form.nome,
       operacao: form.operacao
     };
-    this.firebaseService.add('categorias', data);
+    this.firebaseService.add(this.firebaseService.collectionCategorias, data);
   }
 }

@@ -1,0 +1,27 @@
+<po-modal #modalCategoria p-title="Novo painel">
+  <Div *ngIf="categorias$ | async as categorias">
+    <form [formGroup]="painelForm">
+      <po-input
+        class="po-md-12"
+        formControlName="nome"
+        p-label="Nome"
+      ></po-input>
+      <po-number
+        class="po-md-12"
+        formControlName="ordem"
+        p-label="Ordem"
+      ></po-number>
+      <po-multiselect
+        class="po-md-12"
+        formControlName="categorias"
+        p-label="Categorias"
+        [p-options]="categorias"></po-multiselect>
+      <po-button
+        class="po-md-12 po-mb-2"
+        p-label="Cadastrar"
+        p-type='primary'
+        [p-disabled]="!painelForm.valid"
+        (p-click)="confirmAdd(painelForm.value)"> </po-button>
+    </form>
+  </Div>
+</po-modal>

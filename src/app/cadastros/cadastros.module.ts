@@ -3,18 +3,23 @@ import { CommonModule } from '@angular/common';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { PoUiModule } from '../poUi.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PainelComponent } from './painel/painel.component';
 
 
 
 @NgModule({
-  declarations: [CategoriaComponent],
+  declarations: [
+    CategoriaComponent,
+    PainelComponent
+  ],
   imports: [
     CommonModule,
     PoUiModule,
     ReactiveFormsModule
   ],
   exports: [
-    CategoriaComponent
+    CategoriaComponent,
+    PainelComponent
   ]
 })
 export class CadastrosModule { }

@@ -21,7 +21,7 @@ const routes: Routes = [
   declarations: [
     ExtratoComponent,
     CardComponent,
-    ListItemComponent
+    ListItemComponent,
     ]
 })
 export class ExtratoModule { }

@@ -3,7 +3,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Router} from '@angular/router';
 import {PoNotificationService} from '@po-ui/ng-components';
-import {User} from './firebase';
+import {Data, User} from './firebase';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,8 @@ export class FirebaseService {
   public userId = localStorage.getItem('userId');
   public collectionUser = 'usuarios';
   public collectionMovimentos = 'movimentos';
+  public collectionPainel = 'painel';
+  public collectionCategorias = 'categorias';
 
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
@@ -100,7 +102,7 @@ export class FirebaseService {
     }
   }
 
-  getAll(collection: string): Observable<Array<{id: string, data: any}>> {
+  getAll(collection: string): Observable<Array<Data>> {
     if (!this.userId) {
       this.userId = '123456';
     }
@@ -109,17 +111,21 @@ export class FirebaseService {
       .doc(this.userId)
       .collection(collection)
       .snapshotChanges()
-      .pipe(
-        map((resp) => {
-          return resp.map((item: any) => {
-            const data = item.payload.doc.data();
-            const id = item.payload.doc.id;
-            return {id, data};
-          });
-        })
-      );
+      .pipe(map(resp => this.formatData(resp))
+    );
   }
 
+  get(collection: string): Observable<any> {
+    if (!this.userId) {
+      this.userId = '123456';
+    }
+    return this.firestore
+      .collection(this.collectionUser)
+      .doc(this.userId)
+      .collection(collection)
+      .get()
+      .pipe(map(resp => this.formatDocs(resp)));
+  }
   getWhenPeriod(collection: string, campo: string, dateFrom: string, dateTo: string): Observable<Array<{id: string, data: any}>> {
     if (!this.userId) {
       this.userId = '123456';
@@ -130,17 +136,24 @@ export class FirebaseService {
         .where(campo, '>=', dateFrom)
         .where(campo, '<=', dateTo)
         )
-      .snapshotChanges()
-        .pipe(map(resp => this.formatData(resp))
+      .get()
+        .pipe(map(resp => this.formatDocs(resp))
       );
   }
 
-  formatData(data: any): Array<{id: string, data: any}> {
+  formatData(data: any): Array<Data> {
     return data.map((item: any ) => {
-      console.log(item)
       return {
         id: item.payload.doc.id,
         data: item.payload.doc.data()
+      };
+    });
+  }
+  formatDocs(data: any): Array<Data> {
+    return data.docs.map((item: any ) => {
+      return {
+        id: item.id,
+        data: item.data()
       };
     });
   }

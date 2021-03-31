@@ -1,28 +1,24 @@
-<section class="po-row po-mb-2">
-  <app-card  class="po-md-3 po-lg-3"
-  Titulo='Investimento'
-  [Valor]=500
-  ></app-card>
-  <app-card  class="po-md-3 po-lg-3"
-  Titulo='Receita'
-  [Valor]=500
-  ></app-card>
-  <app-card  class="po-md-3 po-lg-3"
-  Titulo='Despesa'
-  [Valor]=500
-  ></app-card>
-  <app-card  class="po-md-3 po-lg-3"
-  Titulo='Final'
-  [Valor]=500
-  ></app-card>
+<section class="po-row po-mb-2" >
+
+    <app-card *ngFor="let painel of Paineis"
+      class="po-md-3 po-lg-3"
+      [Titulo]='painel.nome'
+      [Valor]='painel.valor'
+    ></app-card>
+
+
+
 </section>
 
 <section class="po-row po-mb-2">
-  <po-tag class="po-mr-2"
-    p-value="Mês" >
+  <po-tag
+    class="po-mr-2"
+    p-value="Mês"
+    (p-click)="filterMov(1)">
   </po-tag>
   <po-tag class="po-mr-2"
-    p-value="no Ano" >
+    p-value="no Ano"
+    (p-click)="filterMov(2)">
   </po-tag>
   <po-tag
 		p-icon="po-icon-calendar"
@@ -41,10 +37,10 @@ p-value="string" > -->
 
 <section>
   <div class="lista-columns">
-    <p>Data</p>
-    <p>Descrição</p>
-    <p>Tipo</p>
-    <p>Valor</p>
+    <p class="po-md-3">Data</p>
+    <p class="po-md-3">Descrição</p>
+    <p class="po-md-3">Tipo</p>
+    <p class="po-md-3">Valor</p>
   </div>
   <div class="lista-columns-divider po-mb-1"></div>
   <Div *ngIf="Movimentos$ | async as items" >
