@@ -1,9 +1,7 @@
-
-
-  <Section class="movcenter" *ngIf="categorias$ | async as categorias" >
-    <po-widget class="po-xl-6 po-lg-6 po-md-6 po-sm-12">
-      <form [formGroup]="movimentoForm">
-        <p class="po-font-title">Movimento</p>
+<po-modal #md
+  p-title='Novo movimento'>
+      <form [formGroup]="movimentoForm" *ngIf="categorias$ | async as categorias">
+        <!-- <p class="po-font-title">Movimento</p> -->
         <po-divider></po-divider>
         <po-input class="po-md-12" formControlName="nome" p-label="Nome"> </po-input>
         <po-input class="po-md-12" formControlName="descricao" p-label="Descrição"> </po-input>
@@ -13,5 +11,8 @@
         <po-number class="po-md-12 po-lg-6 " formControlName="valor" p-icon="po-icon-money" p-label="Valor"> </po-number>
         <po-button class="po-md-12 po-mb-2 po-mt-2" p-label="Cadastrar" p-type='primary' [p-disabled]="!movimentoForm.valid" (p-click)="movimentoAdd(movimentoForm.value)"  > </po-button>
       </form>
-      </po-widget>
-  </Section>
+
+</po-modal>
+
+<!-- <Section class="movcenter" *ngIf="categorias$ | async as categorias" >
+  <po-widget class="po-xl-6 po-lg-6 po-md-6 po-sm-12"> -->

@@ -1,3 +1,4 @@
+import { MovimentoAddComponent } from './movimento-add/movimento-add.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoriaComponent } from './categoria/categoria.component';
@@ -10,7 +11,8 @@ import { PainelComponent } from './painel/painel.component';
 @NgModule({
   declarations: [
     CategoriaComponent,
-    PainelComponent
+    PainelComponent,
+    MovimentoAddComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { PainelComponent } from './painel/painel.component';
   ],
   exports: [
     CategoriaComponent,
-    PainelComponent
+    PainelComponent,
+    MovimentoAddComponent
   ]
 })
 export class CadastrosModule { }

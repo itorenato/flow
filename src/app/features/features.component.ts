@@ -29,7 +29,7 @@ export class FeaturesComponent implements OnInit {
     ) {
     this.toollbarTitle = 'Extrato';
     this.menuItems = [
-      { label: 'Novo Movimento', shortLabel: 'Add', action: this.changeTitle.bind(this), link: '/movimento', icon: 'po-icon-bar-code' },
+      // { label: 'Novo Movimento', shortLabel: 'Add', action: this.changeTitle.bind(this), link: '/movimento', icon: 'po-icon-bar-code' },
       { label: 'Extrato', shortLabel: 'Mov', action: this.changeTitle.bind(this), link: '/extrato', icon: 'po-icon-list' },
       { label: 'Configurações', shortLabel: 'Conf.', icon: 'po-icon-document-filled', subItems: [
         { label: 'Categoria', shortLabel: 'Cat.', action: () => this.modalCategoria.openAdd() },

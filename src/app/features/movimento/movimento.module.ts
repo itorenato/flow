@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PoUiModule } from 'src/app/poUi.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +22,7 @@ const routes: Routes = [
     PoUiModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule
-  ]
+  ],
+  exports: []
 })
 export class MovimentoModule { }
