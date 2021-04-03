@@ -1,25 +1,23 @@
-import { MovimentoComponent } from './movimento.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { PaineisComponent } from './paineis.component';
 import { PoUiModule } from 'src/app/poUi.module';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: MovimentoComponent,
+    component: PaineisComponent,
   }
 ];
 
 @NgModule({
-  declarations: [
-    MovimentoComponent
-  ],
+  declarations: [PaineisComponent],
   imports: [
     CommonModule,
     PoUiModule,
     RouterModule.forChild(routes)
-  ],
-  exports: []
+  ]
 })
-export class MovimentoModule { }
+
+export class PaineisModule { }

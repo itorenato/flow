@@ -1,5 +1,7 @@
-import { Categoria } from 'src/app/cadastros/categoria/categoria';
+
+import { Painel } from 'src/app/shared/interfaces/painel';
 import { Movimento } from 'src/app/features/extrato/extrato';
+import { Categoria } from 'src/app/shared/interfaces/categoria';
 
 export interface User{
   name: string;
@@ -16,5 +18,9 @@ export interface DataMovimentos{
 export interface DataCategorias{
    id: string;
    data: Categoria;
+}
+export interface DataPaineis{
+   id: string;
+   data: Painel;
 }
 

@@ -47,7 +47,7 @@ export class MovimentoComponent implements OnInit {
   }
 
   movimentoAdd(form: any): void{
-    const id = this.firebaseService.getUserId();
+    const id = this.firebaseService.userId;
     if (id) {
       const data: Movimento = {
         userId: id,
@@ -58,7 +58,7 @@ export class MovimentoComponent implements OnInit {
         tipo: form.tipo,
         valor: form.valor,
       };
-      this.firebaseService.add('movimentos', data);
+      this.firebaseService.add(this.firebaseService.collectionMovimentos, data);
     }
   }
 }

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PoButtonModule, PoContainerModule, PoFieldModule, PoModalModule, PoModule, PoNotificationModule, PoPageModule, PoTagModule, PoWidgetModule } from '@po-ui/ng-components';
 import { PoPageLoginModule, PoTemplatesModule } from '@po-ui/ng-templates';
 
@@ -16,7 +17,9 @@ import { PoPageLoginModule, PoTemplatesModule } from '@po-ui/ng-templates';
     PoWidgetModule,
     PoTagModule,
     PoPageModule,
-    PoFieldModule
+    PoFieldModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports:[
     PoModule,
@@ -30,7 +33,10 @@ import { PoPageLoginModule, PoTemplatesModule } from '@po-ui/ng-templates';
     PoWidgetModule,
     PoTagModule,
     PoPageModule,
-    PoFieldModule
+    PoFieldModule,
+    ReactiveFormsModule,
+    FormsModule
+
   ]
 
 

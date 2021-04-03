@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FirebaseService {
-  public userId = localStorage.getItem('userId');
+
   public collectionUser = 'usuarios';
   public collectionMovimentos = 'movimentos';
   public collectionPainel = 'painel';
@@ -28,15 +28,13 @@ export class FirebaseService {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('userId', user.uid);
-        this.userId = user.uid;
       } else {
         localStorage.setItem('user', '');
         localStorage.setItem('userId', '');
-        this.userId = '';
       }
     });
   }
-
+  // login
   login(email: string, password: string): Promise<void> {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(
       (ok) => {
@@ -47,7 +45,7 @@ export class FirebaseService {
       }
     );
   }
-
+  // cadastro de usuário
   register(email: string, password: string, name: string): Promise<void> {
     return this.afAuth.createUserWithEmailAndPassword(email, password).then(
       (respUser: any) => {
@@ -62,27 +60,21 @@ export class FirebaseService {
       }
     );
   }
-
+  // logout do sistema
   logout(): void {
     this.afAuth.signOut().then(() => this.router.navigate(['login']));
   }
-
-  user() {
-    return this.afAuth.authState;
+  // recupera o userId
+  get userId(): string{
+    const id = localStorage.getItem('userId');
+    return ( id ? id : '');
   }
-  // como garantir que this.userId esteja carregada em memoria
-  userInfo() {
-    if (this.userId) {
-      return this.firestore.collection(this.collectionUser).doc(this.userId).get();
-    } else {
-      return this.firestore.collection(this.collectionUser).doc('132').get();
-    }
+  // dados complementares do cliente
+  userInfo(): Observable<any> {
+    return this.firestore.collection(this.collectionUser).doc(this.userId).get();
   }
 
-  getUserId(): string | null {
-    return localStorage.getItem('userId');
-  }
-
+  // adiciona itens em uma coleção
   add(collection: string, data: any): Promise<any> {
     if (this.userId) {
       return this.firestore
@@ -101,11 +93,41 @@ export class FirebaseService {
       return Promise.reject('userid');
     }
   }
+  // atualiza item de uma coleção
+  update(collection: string, id: string, record: any): Promise<any>{
+    return this.firestore.collection(this.collectionUser).doc(this.userId).collection(collection).doc(id).set(record)
+            .then(
+              () => {
+                this.poNotification.success('Atualizado com sucesso!');
+              },
+              (error) => {
+                this.poNotification.error(error.message);
+              });
+  }
+  // apaga um item da coleção
+  delete(collection: string, id: string): Promise<any> {
+    return this.firestore.firestore.collection(this.collectionUser).doc(this.userId).collection(collection).doc(id).delete()
+      .then(
+        () => {
+          this.poNotification.success('Excluído com sucesso!');
+        },
+        (error) => {
+          this.poNotification.error(error.message);
+        });
+  }
+
 
   getAll(collection: string): Observable<Array<Data>> {
-    if (!this.userId) {
-      this.userId = '123456';
-    }
+    return this.firestore
+      .collection(this.collectionUser)
+      .doc(this.userId)
+      .collection(collection)
+      .get()
+      .pipe(map(resp => this.formatDocs(resp))
+    );
+  }
+
+  getAllSnapshot(collection: string): Observable<Array<Data>> {
     return this.firestore
       .collection(this.collectionUser)
       .doc(this.userId)
@@ -116,9 +138,6 @@ export class FirebaseService {
   }
 
   get(collection: string): Observable<any> {
-    if (!this.userId) {
-      this.userId = '123456';
-    }
     return this.firestore
       .collection(this.collectionUser)
       .doc(this.userId)
@@ -127,9 +146,6 @@ export class FirebaseService {
       .pipe(map(resp => this.formatDocs(resp)));
   }
   getWhenPeriod(collection: string, campo: string, dateFrom: string, dateTo: string): Observable<Array<{id: string, data: any}>> {
-    if (!this.userId) {
-      this.userId = '123456';
-    }
     return this.firestore.collection(this.collectionUser)
       .doc(this.userId)
       .collection(collection, ref => ref
@@ -145,7 +161,7 @@ export class FirebaseService {
     return data.map((item: any ) => {
       return {
         id: item.payload.doc.id,
-        data: item.payload.doc.data()
+        data: Object.assign(item.payload.doc.data(), {id: item.payload.doc.id})
       };
     });
   }
@@ -153,7 +169,7 @@ export class FirebaseService {
     return data.docs.map((item: any ) => {
       return {
         id: item.id,
-        data: item.data()
+        data: Object.assign(item.data(), {id: item.id})
       };
     });
   }

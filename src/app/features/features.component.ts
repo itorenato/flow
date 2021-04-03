@@ -1,10 +1,7 @@
-
-import { CategoriaComponent } from './../cadastros/categoria/categoria.component';
 import { FirebaseService } from './../services/firebase/firebase.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PoMenuItem, PoMenuPanelItem, PoModalComponent, PoToolbarAction, PoToolbarProfile } from '@po-ui/ng-components';
+import { PoMenuItem, PoMenuPanelItem, PoToolbarProfile } from '@po-ui/ng-components';
 import { User } from '../services/firebase/firebase';
-import { PainelComponent } from '../cadastros/painel/painel.component';
 
 @Component({
   selector: 'app-features',
@@ -13,33 +10,23 @@ import { PainelComponent } from '../cadastros/painel/painel.component';
 })
 export class FeaturesComponent implements OnInit {
 
-  public profileActions: Array<PoToolbarAction>;
-
   public profile!: PoToolbarProfile;
 
   public menuItems: Array<PoMenuItem>;
 
   public toollbarTitle!: string;
 
-  @ViewChild('modalCategoria') modalCategoria!: CategoriaComponent;
-  @ViewChild('modalPainel') modalPainel!: PainelComponent;
-
   constructor(
     private firebaseService: FirebaseService,
     ) {
     this.toollbarTitle = 'Extrato';
     this.menuItems = [
-      // { label: 'Novo Movimento', shortLabel: 'Add', action: this.changeTitle.bind(this), link: '/movimento', icon: 'po-icon-bar-code' },
       { label: 'Extrato', shortLabel: 'Mov', action: this.changeTitle.bind(this), link: '/extrato', icon: 'po-icon-list' },
-      { label: 'Configurações', shortLabel: 'Conf.', icon: 'po-icon-document-filled', subItems: [
-        { label: 'Categoria', shortLabel: 'Cat.', action: () => this.modalCategoria.openAdd() },
-        { label: 'Painel', shortLabel: 'Pain.', action: () => this.modalPainel.openAdd() },
+      { label: 'Configurações', shortLabel: 'Conf.', icon: 'po-icon-settings', subItems: [
+        { label: 'Categorias', action: this.changeTitle.bind(this), link: '/categorias' },
+        { label: 'Painéis', action: this.changeTitle.bind(this), link: '/paineis' },
       ]},
       { label: 'Sair', shortLabel: 'Sair', action: () => this.firebaseService.logout(), icon: 'po-icon-exit' }
-    ];
-    this.profileActions = [
-      { icon: 'po-icon-exit', label: 'Categorias', type: 'danger', separator: true, action: () => this.modalCategoria.openAdd()},
-      { icon: 'po-icon-exit', label: 'Exit', type: 'danger', separator: true, action: () => this.firebaseService.logout()}
     ];
    }
 

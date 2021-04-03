@@ -1,0 +1,63 @@
+<section class="po-row po-mb-2 " style="justify-content: flex-end;">
+  <po-button class="po-md-3"
+    p-label='Incluir'
+    [p-small]=true
+    p-type='primary'
+    (p-click)="openModalAdd(undefined)"
+    ></po-button>
+
+</section>
+<section  *ngIf="paineis$ | async as paineis">
+  <po-table
+    p-container ="shadow"
+    p-sort =true
+    p-striped=true
+    [p-columns]="tableColumns"
+    [p-items]="paineis"
+    [p-actions]="tableActions"
+  ></po-table>
+</section>
+
+<po-modal #mdAdd [p-title]="title">
+  <Div *ngIf="categorias$ | async as categorias">
+    <form [formGroup]="painelForm">
+      <po-input
+        class="po-md-12"
+        formControlName="nome"
+        p-label="Nome"
+      ></po-input>
+      <po-number
+        class="po-md-12"
+        formControlName="ordem"
+        p-label="Ordem"
+      ></po-number>
+      <po-multiselect
+        class="po-md-12"
+        formControlName="categorias"
+        p-label="Categorias"
+        [p-options]="categorias"></po-multiselect>
+      <po-button
+        class="po-md-12 po-mb-2"
+        p-label="Cadastrar"
+        p-type='primary'
+        [p-disabled]="!painelForm.valid"
+        (p-click)="confirmAdd(painelForm.value)"> </po-button>
+    </form>
+  </Div>
+</po-modal>
+
+<po-modal #mdDelete
+  p-title='Confirma a exclusão?'>
+  <po-button
+    class="po-md-6 po-mb-2"
+    p-label="Cancela"
+    p-type='default'
+    (p-click)="mdDelete.close()"> </po-button>
+  <po-button
+    class="po-md-6 po-mb-2"
+    p-label="Confirma"
+    p-type='danger'
+    (p-click)="deleteItem()"> </po-button>
+</po-modal>
+
+

@@ -1,3 +1,4 @@
+import { PaineisModule } from './paineis/paineis.module';
 import { CadastrosModule } from './../cadastros/cadastros.module';
 import { ExtratoComponent } from './extrato/extrato.component';
 import { PoUiModule } from './../poUi.module';
@@ -19,6 +20,14 @@ const routes: Routes = [
         path: 'movimento',
         loadChildren: () => import('./movimento/movimento.module').then(m => m.MovimentoModule)
       },
+      {
+        path: 'categorias',
+        loadChildren: () => import('./categorias/categorias.module').then(m => m.CategoriasModule)
+      },
+      {
+        path: 'paineis',
+        loadChildren: () => import('./paineis/paineis.module').then(m => m.PaineisModule)
+      },
     ]
   }
 ]
@@ -31,7 +40,8 @@ const routes: Routes = [
     CommonModule,
     PoUiModule,
     RouterModule.forChild(routes),
-    CadastrosModule
+    CadastrosModule,
+    PaineisModule
   ]
 })
 export class FeaturesModule { }
